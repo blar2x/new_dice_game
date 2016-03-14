@@ -1,7 +1,7 @@
 package new_dice_game_dev;
 
 public class Peaklass {
-	public static int[] muudaKohta(int[] m2nguruut, int kohamuutus){
+	public static int[] muudaKohta(int[] m2nguruut, int kohamuutus, int m2ngija){
 		int ajutinekoht = 0;
 		int uuskoht;
 		int[] vastus;
@@ -10,7 +10,7 @@ public class Peaklass {
 
 			
 			//leiame m2ngija koha massiivis ja kustutame selle
-			if(m2nguruut[i] == 1){
+			if(m2nguruut[i] == m2ngija){
 				ajutinekoht = i;
 				m2nguruut[i] = 0;
 			}
@@ -19,15 +19,16 @@ public class Peaklass {
 			
 			for (int j = 0; j < m2nguruut.length; j++) {
 				if(j == uuskoht){
-					m2nguruut[j] = 1;
+					m2nguruut[j] = m2ngija;
 					
 				}
 				
 				
 			}
 			vastus = m2nguruut;
+
 			return vastus;	
-			
+
 	
 		
 	}
@@ -67,14 +68,39 @@ public class Peaklass {
 		
 		
 
-		
-		int[] uusruut;
+		int t2ringuv22rtus2;
+		int[] uusruut1;
+		int[] uusruut2;
 		while(m2ng == true && loendur > 1){
+			System.out.println();
 			System.out.println("m2ngija 1 kord");
-			int t2ringuv22rtus = punane.t2ringu_vise();
-			uusruut = muudaKohta(m2nguruut, t2ringuv22rtus);
+			int t2ringuv22rtus1 = punane.t2ringu_vise();
+			
+			uusruut1 = muudaKohta(m2nguruut, t2ringuv22rtus1, 1);
 			//System.out.println("m2ngija 2 kord");
-			System.out.println(uusasi.v2li(uusruut));
+			System.out.println( " veeretati "+ t2ringuv22rtus1);
+			System.out.println(uusasi.v2li(uusruut1));
+			
+			System.out.println();
+			System.out.println ("Mängija 2 kord");
+			t2ringuv22rtus2 = 1- punane.t2ringu_vise();
+			System.out.println( " veeretati "+ t2ringuv22rtus2 * -1);
+			uusruut2 = muudaKohta(m2nguruut, t2ringuv22rtus2, 2);
+			
+			System.out.println(uusasi.v2li(uusruut2));
+			
+			//kontroll nupu seisundi kohta
+			if (m2nguruut[31] == 1){
+				System.out.println("Mängija 1 võitis");
+				return ;
+			}
+			
+			else if (m2nguruut[31]== 2){
+				System.out.println("Mängija 2 võitis");
+				return ;
+			}
+				
+		
 			loendur--;
 		}
 		
