@@ -1,3 +1,3 @@
 # new_dice_game
 
---dice game for school project
+--dice game for school project!
