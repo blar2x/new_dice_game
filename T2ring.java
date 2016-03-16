@@ -3,11 +3,11 @@ package new_dice_game_dev;
 import java.util.Random;
 
 public class T2ring {
-	String v2rv;
 	
 	
-	public T2ring(String v2rv) {
-		this.v2rv = v2rv;
+	
+	public T2ring() {
+		
 	}
 
 

@@ -1,7 +1,7 @@
 package new_dice_game_dev;
 
 public class Nupp {
-	String nimi; //milline nupp v2lja n2eb
+	String nimi;
 	int asukoht; //indeks m2nguv2lja massiivis
 	int id;// v22rtus m2nguv2lja massiivis
 	
@@ -11,6 +11,35 @@ public class Nupp {
 		this.asukoht = asukoht;
 		this.id = id;
 	}
+	
+	public int[] m22rakoht(int[] m2nguruut, int uusindex, int id){
+        
+		for (int i = 0; i < m2nguruut.length; i++) {
+			
+
+            //leiame m2ngija koha massiivis ja kustutame selle
+            if(m2nguruut[i] == id){
+                m2nguruut[i] = 0;
+                
+            }
+        }
+		
+		
+		
+		
+		for (int j = 0; j < m2nguruut.length; j++) {
+            if(j == uusindex){
+                m2nguruut[j] = id;
+                System.out.println("222");
+
+            }
+
+
+        }
+		return m2nguruut;
+	}
+	
+	
 	
 	
 	public int[] muudaKohta(int[] m2nguruut, int kohamuutus, int id){

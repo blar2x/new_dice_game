@@ -57,7 +57,7 @@ public class Peaklass {
 
 
     public static void main(String[] args) {
-        T2ring punane = new T2ring("punane");
+        T2ring punane = new T2ring();
         M2nguv2li uusasi = new M2nguv2li(61);
         boolean m2ng = true;
         int loendur = 15;
@@ -81,8 +81,6 @@ public class Peaklass {
             else if(i == m2nguruut.length-1){
                 m2nguruut[i]=2;
             }
-            //System.out.print(m2nguruut[i]);
-            //System.out.println(i);
         }
 
 
