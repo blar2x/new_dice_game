@@ -1,5 +1,4 @@
-//package new_dice_game_dev;
-
+package new_dice_game_dev;
 
 
 public class M2nguv2li {
@@ -46,3 +45,6 @@ public class M2nguv2li {
 
 
 }
+
+
+

@@ -1,6 +1,27 @@
-//package new_dice_game_dev;
+package new_dice_game_dev;
+
+
+
+
 
 public class Peaklass {
+	
+	
+	public static int getArrayIndex(int[] arr,int value) {
+
+        int k=0;
+        for(int i=0;i<arr.length;i++){
+
+            if(arr[i]==value){
+                k=i;
+                break;
+            }
+        }
+    return k;
+}
+	
+	
+	
     public static int[] muudaKohta(int[] m2nguruut, int kohamuutus, int m2ngija){
         int ajutinekoht = 0;
         int uuskoht;
@@ -75,6 +96,7 @@ public class Peaklass {
             System.out.println();
             System.out.println("mängija 1 kord");
             int t2ringuv22rtus1 = punane.t2ringu_vise();
+            
             uusruut1 = muudaKohta(m2nguruut, t2ringuv22rtus1, 1);
 
             System.out.println( "Veeretati "+ t2ringuv22rtus1);
@@ -82,27 +104,39 @@ public class Peaklass {
             System.out.println();
             System.out.println(uusasi.getM2ngurida().indexOf("1"));
             System.out.println(uusasi.getM2ngurida().indexOf("2"));
-            System.out.println(uusasi.getM2ngurida().length());
+            
+            
+            
+            
+            //System.out.println(uusasi.getM2ngurida().length());
             System.out.println ("Mängija 2 kord");
             t2ringuv22rtus2 = 0- punane.t2ringu_vise();
             System.out.println( "Veeretati "+ t2ringuv22rtus2 * -1);
             uusruut2 = muudaKohta(m2nguruut, t2ringuv22rtus2, 2);
 
             System.out.println(uusasi.v2li(uusruut2));
-
-            if ((uusasi.getM2ngurida().indexOf("1"))>61)
-                
-            if ((uusasi.getM2ngurida().indexOf("2"))<61)
-
-
-            //kontroll nupu seisundi kohta
+            
+            
+            
+            if ((uusasi.getM2ngurida().indexOf("1"))>61){
+            	m2nguruut[31] = 1;
+            }
+            
+            //kontroll nupu 1 seisundi kohta
             if (m2nguruut[31] == 1){
                 System.out.println("Mängija 1 võitis");
 
                 return ;
             }
+            
+           
+            if ((uusasi.getM2ngurida().indexOf("2"))<61){
+            	m2nguruut[31] = 2;
+            }
+            //kontroll nupu 2 seisundi kohta
 
-            else if (m2nguruut[31]== 2){
+
+            else if (m2nguruut[31] == 2){
                 System.out.println("Mängija 2 võitis");
                 return ;
             }
