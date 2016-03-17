@@ -1,6 +1,3 @@
-package new_dice_game_dev;
-
-
 public class M2nguv2li {
     int ruutude_arv = 61;
     static String m2ngurida;
@@ -35,6 +32,3 @@ public class M2nguv2li {
         return m2ngurida;
     }
 }
-
-
-

@@ -1,154 +1,138 @@
-package new_dice_game_dev;
-
-
-
-
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Peaklass {
-	
-	
-	public static int getArrayIndex(int[] arr,int value) {
-
-        int k=0;
-        for(int i=0;i<arr.length;i++){
-
-            if(arr[i]==value){
-                k=i;
-                break;
-            }
-        }
-    return k;
-}
-	
-	
-	
-    public static int[] muudaKohta(int[] m2nguruut, int kohamuutus, int m2ngija){
-        int ajutinekoht = 0;
-        int uuskoht;
-        int[] vastus;
-        //leia eelmine koht
-        for (int i = 0; i < m2nguruut.length; i++) {
-
-
-            //leiame m2ngija koha massiivis ja kustutame selle
-            if(m2nguruut[i] == m2ngija){
-                ajutinekoht = i;
-                m2nguruut[i] = 0;
-            }
-        }
-        uuskoht = ajutinekoht + kohamuutus;
-
-        for (int j = 0; j < m2nguruut.length; j++) {
-            if(j == uuskoht){
-                m2nguruut[j] = m2ngija;
-
-            }
-
-
-        }
-        vastus = m2nguruut;
-
-        return vastus;
-
-
-
-    }
-
-
+    private static Scanner scan;
 
     public static void main(String[] args) {
         T2ring punane = new T2ring();
         M2nguv2li uusasi = new M2nguv2li(61);
         boolean m2ng = true;
         int loendur = 15;
+        scan = new Scanner(System.in);
+        String userinput;
+
+        String nimi1 = JOptionPane.showInputDialog(null, "I mängija nimi ", "Nime sisestamine",
+                JOptionPane.QUESTION_MESSAGE);
+        String nimi2 = JOptionPane.showInputDialog(null, "II mängja nimi ", "Nime sisestamine",
+                JOptionPane.QUESTION_MESSAGE);
 
 
+        Nupp nupp1 = new Nupp(nimi1,0,1,3);
+        Nupp nupp2 = new Nupp(nimi2,0,2,3);
 
-        System.out.println(punane.t2ringu_vise());
+        System.out.println("Tere "+ nupp1.getNimi()+" ja "+ nupp2.getNimi()+"!");
 
+        //kirjeldus
+        System.out.println();
+        System.out.println("Antud mängu eesmärgiks on jõuda enne vastast vähemalt mänguvälja keskele.");
+        System.out.println("Mängus on võimalik ka vastast saboteerida tema nupu tagasilükkamisega.");
+        System.out.println("Seda saab teha vajutades oma käigu ajal klahvi 'b' ja seejärel 'ENTER'it.");
+        System.out.println("Tagasilükkamist saab kasutada alates neljandast käigust.");
+        System.out.println("Iga mängija saab oma vastast tagasi lükata ainult kaks korda.");
+        System.out.println("Tagasilükkamise arv genereeritakse juhuslikult ühest kuni nelja sammuni.");
+        System.out.println();
+        System.out.println("Mängu lõpetamiseks vajutada klahvi 'x' ja seejärel 'ENTER'it.");
+        System.out.println();
+        System.out.println("Head mängimist!");
+        System.out.println();
+        System.out.println("Mängu alustamiseks vajutada 'ENTER'it.");
+        userinput = scan.nextLine();
 
-
-        // kutsub klassist m2nguv2li tyhja massiivi
         int m2nguruut[] = uusasi.getM2nguruudud();
+        nupp1.m22rakoht(m2nguruut, 0, 1);
+        nupp2.m22rakoht(m2nguruut, m2nguruut.length-1, 2);
 
-        System.out.println(m2nguruut.length);
-        //v22rtustab massiivi alguse ja l6pu elemendi
+        System.out.println();
 
-        for (int i = 0; i < m2nguruut.length; i++) {
-            if(i == 0){
-                m2nguruut[i]= 1;
-            }
-            else if(i == m2nguruut.length-1){
-                m2nguruut[i]=2;
-            }
-        }
-
-
-
-
-
-        int t2ringuv22rtus2;
         int[] uusruut1;
         int[] uusruut2;
+
         while(m2ng == true && loendur > 1){
-            System.out.println();
-            System.out.println("mängija 1 kord");
-            int t2ringuv22rtus1 = punane.t2ringu_vise();
-            
-            uusruut1 = muudaKohta(m2nguruut, t2ringuv22rtus1, 1);
 
-            System.out.println( "Veeretati "+ t2ringuv22rtus1);
-            System.out.println(uusasi.v2li(uusruut1));
-            System.out.println();
-            System.out.println(uusasi.getM2ngurida().indexOf("1"));
-            System.out.println(uusasi.getM2ngurida().indexOf("2"));
-            
-            
-            
-            
-            //System.out.println(uusasi.getM2ngurida().length());
-            System.out.println ("Mängija 2 kord");
-            t2ringuv22rtus2 = 0- punane.t2ringu_vise();
-            System.out.println( "Veeretati "+ t2ringuv22rtus2 * -1);
-            uusruut2 = muudaKohta(m2nguruut, t2ringuv22rtus2, 2);
-
-            System.out.println(uusasi.v2li(uusruut2));
-            
-            
-            
-            if ((uusasi.getM2ngurida().indexOf("1"))>61){
-            	m2nguruut[31] = 1;
-            }
-            
-            //kontroll nupu 1 seisundi kohta
-            if (m2nguruut[31] == 1){
-                System.out.println("Mängija 1 võitis");
-
+            if (userinput.equals("x")){
+                System.out.println("Mäng lõpetatud.");
                 return ;
             }
-            
-           
-            if ((uusasi.getM2ngurida().indexOf("2"))<61){
-            	m2nguruut[31] = 2;
-            }
-            //kontroll nupu 2 seisundi kohta
-
-
-            else if (m2nguruut[31] == 2){
-                System.out.println("Mängija 2 võitis");
-                return ;
+            if (loendur == 15){
+                System.out.println("'Veeretamiseks vajutada ENTER'it");
+                System.out.println(uusasi.v2li(m2nguruut));
             }
 
+            //I mängija kord
+            System.out.println();
+            System.out.println("Mängija "+nupp1.getNimi()+" kord, käik:" + (15-loendur+1) );
+            userinput = scan.nextLine();
+            System.out.println();
 
+            if (userinput.equals("b") && nupp1.getKorrad() >  1 && loendur <= 12){
+
+                nupp1.pushBack(m2nguruut,2 ,punane );
+                nupp1.setKorrad(nupp1.getKorrad()-1);
+                System.out.println("tagasilükkamise kordi jäänud " + (nupp1.getKorrad()-1));
+                System.out.println(uusasi.v2li(m2nguruut));
+            }
+            else{
+                if(nupp1.getKorrad() == 1 && userinput.equals("b")){
+                    System.out.println("Rohkem tagasilükkamisi teha ei saa.");
+                }
+                int t2ringuv22rtus1 = punane.t2ringu_vise();//random
+                System.out.println( "Veeretati "+ t2ringuv22rtus1);
+                if(nupp1.getAsukoht()+t2ringuv22rtus1==nupp2.getAsukoht()){
+                    uusruut1 = nupp1.muudaKohta(m2nguruut,t2ringuv22rtus1+1,1);
+                }
+                else {
+                    uusruut1 = nupp1.muudaKohta(m2nguruut, t2ringuv22rtus1, 1);
+                }
+                if ((nupp1.getAsukoht()>=31)){
+                    nupp1.m22rakoht(uusruut1,31,1);
+                    System.out.println(uusasi.v2li(uusruut1));
+                    System.out.println();
+                    System.out.println(nupp1.getNimi()+" võitis!");
+                    return ;
+                }
+                else {
+                    System.out.println(uusasi.v2li(uusruut1));
+                }
+            }
+            //II mängija kord
+            System.out.println();
+            System.out.println("Mängija "+nupp2.getNimi()+" kord, käik:" + (15-loendur+1));
+            userinput = scan.nextLine();
+            System.out.println();
+
+            if (userinput.equals("b") && nupp2.getKorrad() >  1  && loendur<= 12){
+
+                nupp2.pushBack(m2nguruut, 1, punane);
+                nupp2.setKorrad(nupp2.getKorrad()-1);
+                System.out.println("tagasilükkamise kordi jäänud " + (nupp2.getKorrad()-1));
+                System.out.println(uusasi.v2li(m2nguruut));
+            }
+
+            else{
+                if(nupp2.getKorrad() == 1 && userinput.equals("b")) {
+                    System.out.println("Rohkem tagasilükkamisi teha ei saa.");
+                }
+                int t2ringuv22rtus2 = 0-punane.t2ringu_vise();
+                System.out.println( "Veeretati "+ t2ringuv22rtus2*-1);
+                if(nupp2.getAsukoht()-t2ringuv22rtus2==nupp1.getAsukoht()) {
+                    uusruut2 = nupp2.muudaKohta(m2nguruut,t2ringuv22rtus2-1,2);
+                }
+                else{
+                    uusruut2 = nupp2.muudaKohta(m2nguruut, t2ringuv22rtus2, 2);
+                }
+                if ((nupp2.getAsukoht()<=31)){
+                    nupp2.m22rakoht(uusruut2,31,2);
+                    System.out.println(uusasi.v2li(uusruut2));
+                    System.out.println();
+                    System.out.println(nupp2.getNimi()+" võitis!");
+                    return ;
+                }
+                else {
+                    System.out.println(uusasi.v2li(uusruut2));
+                }
+            }
             loendur--;
         }
-
-        //System.out.println(uusasi.v2li(m2nguruut));
-
-        //System.out.println(".1._._._._._._._._._._._._._.3._._._."); n2idis m2ngu rida
-
-
-
     }
-
 }
